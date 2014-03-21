@@ -1,0 +1,5 @@
+INSTALACION:
+
+- Copie la Carpeta MERCADO VIRTUAL DE VENALCASA al directorio htdocs o www de su servidor web
+- Edite los archivos constantes.php y conexion.php que se encuentran en /MERCADO VIRTUAL DE VENALCASA/app/includes/ con los datos del servidor de mysql
+- Importe el archivo bd_MERCADO VIRTUAL DE VENALCASA.sql en su base de datos mysql

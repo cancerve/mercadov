@@ -1,0 +1,296 @@
+body {
+    font-family: verdana, arial; font-size: 0.6em;
+}
+@charset "utf-8";
+body
+{
+	background:none;
+	background-color: #FFF;
+	scrollbar-face-color: #CCCCCC;
+	scrollbar-highlight-color: #000000;
+	scrollbar-shadow-color: #000000;
+	scrollbar-3dlight-color: #F8F8F8;
+	scrollbar-arrow-color: #000000;
+	scrollbar-track-color: #CCCCCC;
+	scrollbar-darkshadow-color: #CCCCCC;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+body,td,
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+
+#signup .input:focus{
+	outline:0px;
+}
+
+a 
+{
+	text-decoration: none; 
+	color: #000000; 
+	font-weight: bold;
+}
+
+a:hover
+{ 
+	text-decoration: none; 
+	color: #cf0f1b; 
+	font-weight: bold;
+}
+
+.Textonegro
+{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	color: #000000;
+	text-align: right;
+}
+
+.Rojita
+{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #cf0f1b;
+}
+.Negrita
+{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #000000;
+}
+.NegritaMayor
+{
+	font-size: 16px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #000000;
+}
+.Blanquita 
+{
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #FFFFFF;
+}
+
+.Azulita
+{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;font-weight: bold;
+	color: #dd8200;
+}
+
+.BlancoRojo
+{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #cf0f1b;
+	text-align: center;
+}
+.BlancoAzul
+{
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #FFFFFF; 
+	background-color:#dd8200;
+}
+.BlancoGris
+{
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #FFFFFF; 
+	background-color:#666666;
+	height:15px;
+    float:left;
+    clear:both;
+    margin:0px;
+    border:1px solid #CCCCCC;
+    width:98%;
+    padding:7px;
+    margin-left:0px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+}
+.BlancoGrisClaro
+{
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold; 
+	color: #000000; 
+	background-color:#CCCCCC;
+	height:10px;
+    float:left;
+    clear:both;
+    margin:0px;
+    border:1px solid #666666;
+    width:99%;
+    padding:3px;
+    margin-left:0px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+}
+.TextonegroPEQ 
+{
+	font-size: 9px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms; color: #000000;
+}
+
+.BotonAzul
+{
+	background-color: #cccccc; 
+	border: 1px #dd8200 solid; 
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size: 11px; color: #dd8200; 
+	font-weight: bold;
+	width:110px;
+}
+
+.BotonRojo
+{
+	background-color: #cccccc; 
+	border: 1px #cf0f1b solid; 
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size: 11px; color: #cf0f1b; 
+	font-weight: bold;
+	width:110px;
+}
+
+.BotonGris
+{
+	background-color: #F8F8F8; 
+	border: 1px #000000 solid; 
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size: 11px; color: #ffffff; 
+	font-weight: bold;
+}
+
+.BotonHorarioDisponible
+{
+	background-color: #FFFFFF; 
+	width:100%;
+	height:100%;
+	border: 0px;
+}
+
+input {
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	background: #F8F8F8;
+	border: 1px solid #CCCCCC;
+	height:25px;
+	box-shadow: 0px 0px 3px #aaa;	
+}
+
+input:focus {
+	outline:0px;
+    border: 1px solid #dd8200;
+	color: #dd8200;
+	background: #FFFFFF;
+}
+input:hover {
+	border: 1px solid #dd8200;
+	color: #dd8200;
+	background: #FFFFFF;
+}
+textarea{
+	background:#f8f8f8;
+	border: 1px solid #CCCCCC ;
+	width:212px;
+	box-shadow: 0px 0px 3px #aaa;		
+}
+textarea:focus {
+    border: 1px solid #dd8200;
+	color: #dd8200;	
+	background: #FFFFFF;
+}
+textarea:hover {
+    border: 1px solid #dd8200;
+	color: #dd8200;	
+	background: #FFFFFF;
+}
+select{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;	
+	background:#f8f8f8;
+	border: 1px solid #CCCCCC ;
+	width: 214px;
+	height: 25px;
+	box-shadow: 0px 0px 3px #aaa;				
+}
+select:focus {
+    border: 1px solid #dd8200;
+	color: #dd8200;	
+	background: #FFFFFF;	
+}
+select:hover {
+	outline:0px;	
+    border: 1px solid #dd8200;
+	color: #dd8200;	
+	background: #FFFFFF;	
+}
+
+.TablaRojaGrid{
+	border: 1px solid #cf0f1b;
+	padding: 0;
+	border-spacing: 0;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	color: #000000;
+	clear: both;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0px 0px 3px #aaa;
+	-webkit-box-shadow: 0px 0px 3px #aaa;
+	box-shadow: 0px 0px 3px #aaa;
+	background-color: #FFF;
+	text-align: center;
+}
+
+.TablaRojaGridTR{
+	border: 1px solid #cf0f1b;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+}
+
+.TablaRojaGridTRTitulo{
+	border: 1px solid #cf0f1b;
+	height: 30px;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Comic Sans Ms;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #cf0f1b;
+	text-align: center;
+}
+
+.TablaRojaGridTD{
+	border: 1px solid #cf0f1b;
+	height:30px;
+}
+
+.TablaRojaGridTDHorario{
+	border: 1px solid #cf0f1b;
+	height: 20px;
+}
