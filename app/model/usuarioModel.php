@@ -149,7 +149,19 @@ class Usuario{
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
 	}	
-	
+
+/*
+	function buscarUsuario2($objConexion,$NU_Cedula){
+		$this->NU_Cedula = $NU_Cedula;
+		$NU_Cedula;
+		$query="SELECT U.*
+				FROM nomina4 AS U
+				WHERE CEDULA=".$this->NU_Cedula."";
+		
+		$resultado=$objConexion->ejecutar($query);
+		return $resultado;		
+	}
+*/		
 	function actualizar($objConexion,$NU_Cedula,$AF_Clave,$AF_Correo,$AF_Telefono){
 		$this->NU_Cedula	= $NU_Cedula;
 		$this->AF_Clave		= $AF_Clave;

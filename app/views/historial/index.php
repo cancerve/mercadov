@@ -77,6 +77,7 @@ $cantRS = $objConexion->cantidadRegistros($RS);
             CREDITO</th>
           <th width="100" align="center" scope="col">MONTO A<br>
             PAGAR</th>
+          <th width="60" align="center" scope="col">VER</th>
           <th width="60" align="center" scope="col">EDITAR</th>
           <!--<th width="60" align="center" scope="col">BORRAR</th>-->
         </tr>
@@ -91,17 +92,19 @@ $cantRS = $objConexion->cantidadRegistros($RS);
 			$MontoBruto 		= $objConexion->obtenerElemento($RS,$i,'MontoBruto');			
 			$BS_NotaCredito		= $objConexion->obtenerElemento($RS,$i,'BS_NotaCredito');
 			$MontoPagar 		= $MontoBruto - $BS_NotaCredito;
+			$AF_CodPedido 		= $objConexion->obtenerElemento($RS,$i,'AF_CodPedido');
     ?>
         <tr>
           <td align="center" class="TablaRojaGridTD"><?php echo setFechaNoSQL($FE_FechaMercado); ?></td>
           <td align="center" class="TablaRojaGridTD"><?='DGRH-GBS-M0'.$mercado_NU_IdMercado?></td>
-          <td align="center" class="TablaRojaGridTD"><?=$NU_IdPedido?></td>
+          <td align="center" class="TablaRojaGridTD"><?=$AF_CodPedido?></td>
           <td align="center" class="TablaRojaGridTD"><?=$CantProductos?></td>
-          <td align="right" class="TablaRojaGridTD"><?=$MontoBruto.' BsF.'?></td>
-          <td align="right" class="TablaRojaGridTD"><?=$BS_NotaCredito.' BsF.'?></td>
-          <td align="right" class="TablaRojaGridTD"><?=$MontoPagar.' BsF.'?></td>
+          <td align="right" class="TablaRojaGridTD"><?=number_format($MontoBruto,2,',','.').' BsF.'?></td>
+          <td align="right" class="TablaRojaGridTD"><?=number_format($BS_NotaCredito,2,',','.').' BsF.'?></td>
+          <td align="right" class="TablaRojaGridTD"><?=number_format($MontoPagar,2,',','.').' BsF.'?></td>
+          <td align="center" class="TablaRojaGridTD"><a href="../pedido/orden_compra.php?pedido_NU_IdPedido=<?=$NU_IdPedido?>" target="_blank"><img src="../../images/bton_ver.gif" width="31" height="31"  alt=""/></a></td>
           <td align="center" class="TablaRojaGridTD">
-            <a href="edit.php?NU_IdPedido=<?=$NU_IdPedido?>">
+            <a href="editar.php?NU_IdPedido=<?=$NU_IdPedido?>">
               <img src="../../images/bton_edit.gif" width="35" height="31"></a>
           </td>
           <!--<td align="center" class="TablaRojaGridTD">

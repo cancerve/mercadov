@@ -25,11 +25,22 @@
 		$NU_AutorizoCedula		= $_POST['AL_AutorizoCedula'];
 		$NU_AutorizoNombre		= $_POST['AL_AutorizoNombre'];
 
-		$objPedido->insertar($objConexion,$usuario_NU_IdUsuario,$mercado_NU_IdMercado,$NU_AutorizoCedula,$NU_AutorizoNombre,$FE_FechaPedido);
-
+		//////////////// VERIFICAR SI YA EXISTE ESTE INSERT PARA EVITAR DUPLICAR PEDIDO ///////////////////
+		$RSVerificar 	= $objPedido->verificarPedido($objConexion,$usuario_NU_IdUsuario,$mercado_NU_IdMercado);
+		$cantVerificar 	= $objConexion->cantidadRegistros($RSVerificar);
+		///////////////////////////////////////////////////////////////
+		if ($cantVerificar==0){
+			$objPedido->insertar($objConexion,$usuario_NU_IdUsuario,$mercado_NU_IdMercado,$NU_AutorizoCedula,$NU_AutorizoNombre,$FE_FechaPedido);
+		}
+		
 		$AF_CodPedido = '0'.$NU_IdEmpresa.'-0'.$NU_IdUsuario.'-';
 
-		$pedido_NU_IdPedido = $objPedido->obtenerUltimo($objConexion);
+		//////////////// BUSCAR PEDIDO CORRESPONDIENTE A ESTE MERCADO ///////////////////
+		$RSVerificar 	= $objPedido->verificarPedido($objConexion,$usuario_NU_IdUsuario,$mercado_NU_IdMercado);
+		$cantVerificar 	= $objConexion->cantidadRegistros($RSVerificar);
+		///////////////////////////////////////////////////////////////
+//		$pedido_NU_IdPedido = $objPedido->obtenerUltimo($objConexion);
+		$pedido_NU_IdPedido = $objConexion->obtenerElemento($RSVerificar,0,'NU_IdPedido');
 
 		$cantDigPedido = 6-(strlen($pedido_NU_IdPedido));
 
@@ -50,7 +61,13 @@
 				$NU_Max					= $_POST["NU_Max".$k];
 
 				if ($NU_Cantidad!=''){
-					$objPedidoDetalle->insertar($objConexion,$producto_NU_IdProducto,$pedido_NU_IdPedido,$NU_Cantidad,$BS_PrecioUnitario,$NU_Max); 
+					//////////////// VERIFICAR SI YA EXISTE ESTE INSERT PARA EVITAR DUPLICAR PEDIDO DETALLES ///////////////////
+					$RSVerificar2 	= $objPedidoDetalle->verificarDetalle($objConexion,$pedido_NU_IdPedido,$producto_NU_IdProducto);
+					$cantVerificar2	= $objConexion->cantidadRegistros($RSVerificar2);
+					///////////////////////////////////////////////////////////////
+					if ($cantVerificar2==0){
+						$objPedidoDetalle->insertar($objConexion,$producto_NU_IdProducto,$pedido_NU_IdPedido,$NU_Cantidad,$BS_PrecioUnitario,$NU_Max);
+					}
 				}
 			}
 		}

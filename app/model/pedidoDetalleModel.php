@@ -34,5 +34,27 @@ class PedidoDetalle{
 		return $resultado;		
 	}		
 
+	function verificarDetalle($objConexion,$pedido_NU_IdPedido,$producto_NU_IdProducto){
+		$this->pedido_NU_IdPedido 		= $pedido_NU_IdPedido;
+		$this->producto_NU_IdProducto 	= $producto_NU_IdProducto;		
+		$query="SELECT *
+				FROM pedido_detalle
+				WHERE pedido_NU_IdPedido=".$this->pedido_NU_IdPedido." AND producto_NU_IdProducto=".$this->producto_NU_IdProducto;
+		$resultado=$objConexion->ejecutar($query);
+		$cantidad = $objConexion->cantidadRegistros($resultado);
+
+		return $cantidad;
+	}
+	
+	function buscarProducPedido($objConexion,$pedido_NU_IdPedido,$producto_NU_IdProducto){
+		$this->pedido_NU_IdPedido	 	= $pedido_NU_IdPedido;
+		$this->producto_NU_IdProducto 	= $producto_NU_IdProducto;
+		$query="SELECT PD.*
+				FROM pedido_detalle AS PD
+				WHERE pedido_NU_IdPedido=".$this->pedido_NU_IdPedido." and producto_NU_IdProducto=".$this->producto_NU_IdProducto;
+
+		$resultado=$objConexion->ejecutar($query);
+		return $resultado;		
+	}	
 }
 ?>

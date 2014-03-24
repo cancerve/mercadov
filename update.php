@@ -81,7 +81,17 @@
     <td>&nbsp;<?php echo $AF_Telefono; ?></td>
   </tr>
 <?php
-	//$objUsuario->actualizar($objConexion,$NU_IdUsuario,$FE_FechaNac);
+/*
+	$RSACT 		= $objUsuario->buscarUsuario2($objConexion,$NU_Cedula);
+	$cantRSACT	= $objConexion->cantidadRegistros($RSACT);
+	
+	if ($cantRSACT>0){
+		$NOMBRE		= $objConexion->obtenerElemento($RSACT,0,'NOMBRE');
+		$APELLIDO	= $objConexion->obtenerElemento($RSACT,0,'APELLIDO');	
+		
+		$objUsuario->actualizar($objConexion,$NU_Cedula,$NOMBRE,$APELLIDO);
+	}
+	*/
 ?>  
 <?php } ?>  
 </table>

@@ -2,12 +2,18 @@
 	session_start();
 	session_destroy();
 ?>
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+<title>MERCADO VIRTUAL DE VENALCASA</title>
 <script src="../js/swfobject_modified.js" type="text/javascript"></script>
 <script src="../js/swfobject_modified.js" type="text/javascript"></script>
 <script src="../../Scripts/swfobject_modified.js" type="text/javascript"></script>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../css/estilo.css">
 <link rel="shortcut icon" href="../images/favicon.ico"/>
+</head>
+<body>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="25" colspan="2" align="center"><img src="../images/head.jpg" width="963" height="43"  alt=""/></td>
@@ -110,3 +116,5 @@
 	*/
 swfobject.registerObject("FLVPlayer");
 </script>
+</body>
+</html>

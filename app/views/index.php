@@ -153,7 +153,7 @@ die();
                   <td width="90" align="center" class="BotonGris"><a href="pedido/index.php" target="central"><img src="../images/compra.jpg" width="51" height="51"><br>
                     &nbsp;Comprar<br>
                     &nbsp; </a></td>
-                  <td width="90" align="center" class="BotonGris"><a href="#" onClick="abrir_dialog()"><img src="../images/historial.jpg" width="51" height="51"  alt=""/><br>
+                  <td width="90" align="center" class="BotonGris"><a href="historial/index.php" target="central"><img src="../images/historial.jpg" width="51" height="51"  alt=""/><br>
                     Mis Compras<br>
                     &nbsp;</a></td>
                   <td width="90" align="center" class="BotonGris"><a href="#" onClick="abrir_dialog()"><img src="../images/clave.jpg" alt="Cambiar Clave" width="51" height="51" border="0"><br>

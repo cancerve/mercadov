@@ -107,6 +107,28 @@ class Pedido{
 				ORDER BY P.NU_IdPedido DESC";
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
-	}				
+	}	
+	
+	function listarRep($objConexion){		
+		$query="SELECT *, count(*) AS cantidad 
+				FROM (SELECT * 
+					  FROM pedido
+					  ORDER BY NU_IdPedido DESC) AS t 
+				GROUP BY usuario_NU_IdUsuario";
+		$resultado=$objConexion->ejecutar($query);
+		return $resultado;		
+	}
+	
+	function delete($objConexion,$usuario_NU_IdUsuario,$NU_IdPedido){
+		$this->usuario_NU_IdUsuario = $usuario_NU_IdUsuario;
+		$this->NU_IdPedido = $NU_IdPedido;
+		
+		$query="DELETE 
+				FROM pedido
+				WHERE usuario_NU_IdUsuario=".$this->usuario_NU_IdUsuario." AND NU_IdPedido!=".$this->NU_IdPedido."";
+		$resultado=$objConexion->ejecutar($query);
+		return $resultado;
+	}
+						
 }
 ?>

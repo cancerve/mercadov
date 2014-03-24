@@ -24,12 +24,12 @@
 		
 		$_SESSION['AL_Nombre'] 			= ucwords(strtolower($objConexion->obtenerElemento($RSPedido,0,"AL_Nombre")));
 		$_SESSION['AL_Apellido'] 		= ucwords(strtolower($objConexion->obtenerElemento($RSPedido,0,"AL_Apellido")));
-		$_SESSION['cedula'] 			= $objConexion->obtenerElemento($RSPedido,0,"NU_Cedula");	
+		$_SESSION['cedula'] 			= number_format($objConexion->obtenerElemento($RSPedido,0,"NU_Cedula"),0,'','.');	
 		$_SESSION['AF_RazonSocial'] 	= $objConexion->obtenerElemento($RSPedido,0,"AF_RazonSocial");	
 		$_SESSION['AL_NombreSede'] 		= $objConexion->obtenerElemento($RSPedido,0,"AL_NombreSede");			
 		$_SESSION['AL_NombreGerencia'] 	= $objConexion->obtenerElemento($RSPedido,0,"AL_NombreGerencia");			
 		$_SESSION['FE_FechaPedido'] 	= $objConexion->obtenerElemento($RSPedido,0,"FE_FechaPedido");	
-		$_SESSION['AL_AutorizoCedula'] 	= $objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoCedula");			
+		$_SESSION['AL_AutorizoCedula'] 	= number_format($objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoCedula"),0,'','.');			
 		$_SESSION['AL_AutorizoNombre'] 	= $objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoNombre");	
 	}
 	
@@ -69,14 +69,12 @@ class PDF extends FPDF{
 		$this->Cell(0,0,'FECHA DEL PEDIDO: '.setFechaNOSQL($_SESSION['FE_FechaPedido']),0,0,'L');
 		$this->Ln(5);
 		$this->Cell(0,0,'EMPRESA: '.utf8_decode($_SESSION['AF_RazonSocial']),0,0,'L');
-		$this->Ln(5);
-		$this->Cell(0,0,utf8_decode('UBICACIÓN: '.$_SESSION['AL_NombreSede']),0,0,'L');
-		$this->Ln(5);
-		$this->Cell(0,0,'                      '.utf8_decode($_SESSION['AL_NombreGerencia']),0,0,'L');
-		$this->Ln(5);
+		$this->Ln(3);
+		$this->MultiCell(0,5,utf8_decode('UBICACIÓN: '.$_SESSION['AL_NombreSede'].', '.$_SESSION['AL_NombreGerencia']),0,'L',0);
+		$this->Ln(3);
 		$this->Cell(0,0,'NOMBRE Y APELLIDO: '.utf8_decode($_SESSION['AL_Nombre'].' '.$_SESSION['AL_Apellido']),0,0,'L');
 		$this->Ln(5);
-		$this->Cell(0,0,'CEDULA DE IDENTIDAD: '.$_SESSION['cedula'],0,0,'L');
+		$this->Cell(0,0,utf8_decode('CÉDULA DE IDENTIDAD: ').number_format($_SESSION['cedula'],0,'','.'),0,0,'L');
 		$this->SetLeftMargin(10);				
 		$this->Ln(5);
 		$this->Cell(0,0,'',1,0,'C');
