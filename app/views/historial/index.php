@@ -86,6 +86,7 @@ $cantRS = $objConexion->cantidadRegistros($RS);
 	<?php
     	for($i=0; $i<$cantRS; $i++){
 			$FE_FechaMercado 	= $objConexion->obtenerElemento($RS,$i,'FE_FechaMercado');
+			$FE_Fin 			= $objConexion->obtenerElemento($RS,$i,'FE_Fin');
 			$mercado_NU_IdMercado	= $objConexion->obtenerElemento($RS,$i,'mercado_NU_IdMercado');			
 			$NU_IdPedido 		= $objConexion->obtenerElemento($RS,$i,'NU_IdPedido');			
 			$CantProductos 		= $objConexion->obtenerElemento($RS,$i,'CantProductos');
@@ -104,8 +105,10 @@ $cantRS = $objConexion->cantidadRegistros($RS);
           <td align="right" class="TablaRojaGridTD"><?=number_format($MontoPagar,2,',','.').' BsF.'?></td>
           <td align="center" class="TablaRojaGridTD"><a href="../pedido/orden_compra.php?pedido_NU_IdPedido=<?=$NU_IdPedido?>" target="_blank"><img src="../../images/bton_ver.gif" width="31" height="31"  alt=""/></a></td>
           <td align="center" class="TablaRojaGridTD">
+          <?php if (date("Y-m-d") <= $FE_Fin){ ?>
             <a href="editar.php?NU_IdPedido=<?=$NU_IdPedido?>">
               <img src="../../images/bton_edit.gif" width="35" height="31"></a>
+           <?php } ?>   
           </td>
           <!--<td align="center" class="TablaRojaGridTD">
           	<a href="index.php?mensaje='En Construccion'">

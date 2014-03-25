@@ -80,7 +80,9 @@ $(document).ready(function() {
 		default_message_for_dialog += '</p>';
 		
 		var total = ''+total+'';
+		//var totalres = total.toFixed(3);
 		var res = total.replace(".",",");
+		
 
 		default_message_for_dialog +='<b>TOTAL A PAGAR = '+res+' BsF.</b></br></br>';
 		default_message_for_dialog +='<b style="color:#F00">Si confirma esta compra, estará aceptando que el monto total a pagar sea descontado de su próxima quincena.</b>';
@@ -152,7 +154,7 @@ $(document).ready(function() {
 						$AF_NombreProducto	= $objConexion->obtenerElemento($rsMercadoProducto,$i,"AF_NombreProducto");
 						$AL_Medida			= $objConexion->obtenerElemento($rsMercadoProducto,$i,"AL_Medida");
 						$NU_Contenido		= number_format($objConexion->obtenerElemento($rsMercadoProducto,$i,"NU_Contenido"),3,',','.');
-						$BS_PrecioUnitario	= number_format($objConexion->obtenerElemento($rsMercadoProducto,$i,"BS_PrecioUnitario"),2,',','.');
+						$BS_PrecioUnitario	= $objConexion->obtenerElemento($rsMercadoProducto,$i,"BS_PrecioUnitario");
 						$NU_Max				= $objConexion->obtenerElemento($rsMercadoProducto,$i,"NU_Max");
 						$NU_Min				= $objConexion->obtenerElemento($rsMercadoProducto,$i,"NU_Min");						  
 						$NU_Salto			= $objConexion->obtenerElemento($rsMercadoProducto,$i,"NU_Salto");						  
@@ -163,7 +165,7 @@ $(document).ready(function() {
                     <td width="240" align="left" valign="middle">
                   	  <img src="../../images/producto/<?php if ($AF_Foto==''){ echo 'sin_imagen.jpg'; }else{ echo $AF_Foto; } ?>" width="124" height="85"  alt="" style="border:solid 1px #EFEFEF"/>
                     </td>
-                    <td width="664" align="left" valign="middle"><b><?php echo $AF_NombreProducto; ?></b><br><?php echo 'Contenido: '.$NU_Contenido.' '.$AL_Medida;?><br><?php echo 'Precio: '.$BS_PrecioUnitario.' BsF'; ?><br>
+                    <td width="664" align="left" valign="middle"><b><?php echo $AF_NombreProducto; ?></b><br><?php echo 'Contenido: '.$NU_Contenido.' '.$AL_Medida;?><br><?php echo 'Precio: '.number_format($BS_PrecioUnitario,2,',','.').' BsF'; ?><br>
                     
                     
                     <?php
@@ -171,19 +173,24 @@ $(document).ready(function() {
 						$cantPedidoDetalle	= $objConexion->CantidadRegistros($RSPedidoDetalle);
 						
 						if ($cantPedidoDetalle>0){
-							$NU_Cantidad = $objConexion->obtenerElemento($RSPedidoDetalle,0,"NU_Cantidad");			
+							$NU_Cantidad 		= $objConexion->obtenerElemento($RSPedidoDetalle,0,"NU_Cantidad");
+							$NU_IdPedidoDetalle = $objConexion->obtenerElemento($RSPedidoDetalle,0,"NU_IdPedidoDetalle");			
+						}else{
+							$NU_Cantidad 		= '';
+							$NU_IdPedidoDetalle = '';
 						}
 					?>
                     
                       <select name="<?php echo 'NU_Cantidad'.$i; ?>" id="<?php echo 'NU_Cantidad'.$i; ?>" style="width:50px">
-                        <option selected="selected"> </option>
+                        <option selected="selected" value=""> </option>
                         <?php for ($j=$NU_Min; $j<=$NU_Max; $j=$j+$NU_Salto){ ?>
-                        	<option <?php if (isset($NU_Cantidad) and ($NU_Cantidad==$j)){ echo 'selected="selected"'; } ?> value="<?php echo $j; ?>"><?php echo $j; ?></option>
+                        	<option <?php if ($NU_Cantidad==$j){ echo 'selected="selected"'; } ?> value="<?php echo $j; ?>"><?php echo $j; ?></option>
                       	<?php } ?>
                       </select>
                       <input name="<?php echo 'NU_IdProducto'.$i; ?>" type="hidden" id="<?php echo 'NU_IdProducto'.$i; ?>" value="<?php echo $NU_IdProducto; ?>">
-                      <input type="hidden" name="<?php echo 'BS_PrecioUnitario'.$i; ?>" id="<?php echo 'BS_PrecioUnitario'.$i; ?>" value="<?php echo number_format($BS_PrecioUnitario,2,'.',','); ?>">
-                      <input name="<?php echo 'NU_Max'.$i; ?>" type="hidden" id="<?php echo 'NU_Max'.$i; ?>" value="<?=$NU_Max?>"></td>
+                      <input  name="<?php echo 'BS_PrecioUnitario'.$i; ?>" type="hidden" id="<?php echo 'BS_PrecioUnitario'.$i; ?>" value="<?php echo number_format($BS_PrecioUnitario,2,'.',','); ?>">
+                      <input name="<?php echo 'NU_Max'.$i; ?>" type="hidden" id="<?php echo 'NU_Max'.$i; ?>" value="<?=$NU_Max?>">
+                      <input name="<?php echo 'NU_IdPedidoDetalle'.$i; ?>" type="hidden" id="<?php echo 'NU_IdPedidoDetalle'.$i; ?>" value="<?=$NU_IdPedidoDetalle?>"></td>
                     <?php $k++; ?>
                     <?php 
 						if ($k==3){ echo '</tr>'; $k=0; }
@@ -210,7 +217,7 @@ $(document).ready(function() {
             </tr>
             <tr valign="baseline">
               <td colspan="4" align="right" nowrap="nowrap"><span class="Textonegro" style="text-align:center">
-                <input name="Comprar" type="submit" class="confirm"  value="[ Comprar ]" id="Comprar">
+                <input name="Comprar" type="submit" class="confirm"  value="[ Guardar ]" id="Comprar">
                 <input name="button2" type="button" class="BotonRojo" id="button2" value="[ Cancelar ]" onClick="javascript:window.location='../centralView.php'" />
                 <input name="origen" type="hidden" id="origen" value="pedido_edit">
                 <input name="cantProducto" type="hidden" id="cantProducto" value="<?php echo $cantMercadoProducto; ?>">

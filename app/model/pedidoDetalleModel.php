@@ -55,6 +55,28 @@ class PedidoDetalle{
 
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
+	}
+	
+	function update($objConexion,$NU_IdPedidoDetalle,$NU_Cantidad){
+		$this->NU_IdPedidoDetalle	= $NU_IdPedidoDetalle;
+		$this->NU_Cantidad			= $NU_Cantidad;				
+
+		$query="UPDATE pedido_detalle 
+				SET NU_Cantidad =".$this->NU_Cantidad."
+				WHERE NU_IdPedidoDetalle=".$this->NU_IdPedidoDetalle;
+
+		$resultado=$objConexion->ejecutar($query);
+		return true;
 	}	
+	
+	function delete($objConexion,$NU_IdPedidoDetalle){
+		$this->NU_IdPedidoDetalle	= $NU_IdPedidoDetalle;
+
+		$query="DELETE FROM pedido_detalle
+				WHERE NU_IdPedidoDetalle=".$this->NU_IdPedidoDetalle;
+
+		$resultado=$objConexion->ejecutar($query);
+		return true;
+	}		
 }
 ?>

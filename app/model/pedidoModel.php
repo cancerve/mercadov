@@ -96,9 +96,9 @@ class Pedido{
 	
 	function listarPedidoIndiv($objConexion,$NU_IdUsuario){		
 		$this->NU_IdUsuario = $NU_IdUsuario;
-		$query="SELECT P.*, M.FE_FechaMercado,U.NU_Cedula, U.AL_Nombre, U.AL_Apellido, SUM(NU_Cantidad) AS CantProductos, SUM(NU_Cantidad*BS_PrecioUnitario) AS MontoBruto, V.BI_Aprobado
+		$query="SELECT P.*, M.FE_FechaMercado,M.FE_Fin,U.NU_Cedula, U.AL_Nombre, U.AL_Apellido, SUM(NU_Cantidad) AS CantProductos, SUM(NU_Cantidad*BS_PrecioUnitario) AS MontoBruto, V.BI_Aprobado
 				FROM pedido AS P
-                                LEFT JOIN mercado AS M ON (M.NU_IdMercado=P.mercado_NU_IdMercado)
+                LEFT JOIN mercado AS M ON (M.NU_IdMercado=P.mercado_NU_IdMercado)
 				LEFT JOIN usuario AS U ON (U.NU_IdUsuario=P.usuario_NU_IdUsuario)
 				LEFT JOIN pedido_detalle AS PD ON (PD.pedido_NU_IdPedido=P.NU_IdPedido)
 				LEFT JOIN verificacion_compra AS V ON (V.pedido_NU_IdPedido=P.NU_IdPedido)
@@ -129,6 +129,20 @@ class Pedido{
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;
 	}
-						
+
+	function update($objConexion,$NU_IdPedido,$AL_AutorizoCedula,$AL_AutorizoNombre,$FE_FechaPedido){
+		$this->NU_IdPedido			= $NU_IdPedido;
+		$this->AL_AutorizoCedula	= $AL_AutorizoCedula;
+		$this->AL_AutorizoNombre	= $AL_AutorizoNombre;
+		$this->FE_FechaPedido		= $FE_FechaPedido;		
+
+		$query="UPDATE pedido
+				SET	AL_AutorizoCedula ='".$this->AL_AutorizoCedula."',
+					AL_AutorizoNombre ='".$this->AL_AutorizoNombre."',
+					FE_FechaPedido ='".$this->FE_FechaPedido."'
+				WHERE NU_IdPedido=".$this->NU_IdPedido;
+		$resultado=$objConexion->ejecutar($query);
+		return true;
+	}						
 }
 ?>

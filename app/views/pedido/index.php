@@ -206,7 +206,7 @@ $(document).ready(function() {
                     </td>
                     <td width="664" align="left" valign="middle"><b><?php echo $AF_NombreProducto; ?></b><br><?php echo 'Contenido: '.$NU_Contenido.' '.$AL_Medida;?><br><?php echo 'Precio: '.$BS_PrecioUnitario.' BsF'; ?><br>
                       <select name="<?php echo 'NU_Cantidad'.$i; ?>" id="<?php echo 'NU_Cantidad'.$i; ?>" style="width:50px">
-                        <option selected="selected"> </option>
+                        <option selected="selected" value=""> </option>
                         <?php for ($j=$NU_Min; $j<=$NU_Max; $j=$j+$NU_Salto){ ?>
                         	<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
                       	<?php } ?>
