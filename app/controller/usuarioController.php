@@ -86,7 +86,7 @@
 		$CantrsNomina 	= $objConexion->cantidadRegistros($rsUsuario);
 		if ($CantrsNomina>0)
 		{
-			session_start();
+			//session_start();
 			$_SESSION["NU_Cedula"] = $NU_Cedula;				
 
 			$AL_Nombre 			= $objConexion->obtenerElemento($rsUsuario,0,"AL_Nombre");

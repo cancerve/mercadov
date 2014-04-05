@@ -54,7 +54,7 @@ die();
     };
 </script>
 </head>
-<body onUnload="desconectar();">
+<body>
 <div id="dialog" title="Mensaje" style="display:none;">
     <p>En Construccion!!.</p>
 </div>

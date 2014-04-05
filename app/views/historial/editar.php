@@ -182,7 +182,7 @@ $(document).ready(function() {
 					?>
                     
                       <select name="<?php echo 'NU_Cantidad'.$i; ?>" id="<?php echo 'NU_Cantidad'.$i; ?>" style="width:50px">
-                        <option selected="selected" value=""> </option>
+                        <option selected="selected" value="0">0</option>
                         <?php for ($j=$NU_Min; $j<=$NU_Max; $j=$j+$NU_Salto){ ?>
                         	<option <?php if ($NU_Cantidad==$j){ echo 'selected="selected"'; } ?> value="<?php echo $j; ?>"><?php echo $j; ?></option>
                       	<?php } ?>

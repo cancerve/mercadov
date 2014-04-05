@@ -39,8 +39,9 @@
 		$NU_IdMercado 			= $objConexion->obtenerElemento($verificarActivo,0,"NU_IdMercado");
 
 		$RSPedido 		= $objPedido->verificarPedido($objConexion,$usuario_NU_IdUsuario,$NU_IdMercado);
+		$cantRSPedido 	= $objConexion->cantidadRegistros($RSPedido);
 
-		if ($RSPedido>0){
+		if ($cantRSPedido>0){
 			$mensaje='ALERTA: Usted ya posee una orden de compra activa para el Mercado Virtual disponible.';
 			header("Location: ../centralView.php?mensaje=$mensaje");		
 		}
@@ -206,7 +207,7 @@ $(document).ready(function() {
                     </td>
                     <td width="664" align="left" valign="middle"><b><?php echo $AF_NombreProducto; ?></b><br><?php echo 'Contenido: '.$NU_Contenido.' '.$AL_Medida;?><br><?php echo 'Precio: '.$BS_PrecioUnitario.' BsF'; ?><br>
                       <select name="<?php echo 'NU_Cantidad'.$i; ?>" id="<?php echo 'NU_Cantidad'.$i; ?>" style="width:50px">
-                        <option selected="selected" value=""> </option>
+                        <option selected="selected" value="0">0</option>
                         <?php for ($j=$NU_Min; $j<=$NU_Max; $j=$j+$NU_Salto){ ?>
                         	<option value="<?php echo $j; ?>"><?php echo $j; ?></option>
                       	<?php } ?>
@@ -231,9 +232,9 @@ $(document).ready(function() {
             </tr>
             <tr valign="baseline">
               <td align="right" nowrap="nowrap">Nombre y Apellido de quién Retira:</td>
-              <td align="left" nowrap="nowrap"><input name="AL_AutorizoNombre" type="text" id="AL_AutorizoNombre"></td>
+              <td align="left" nowrap="nowrap"><input name="AL_AutorizoNombre" type="text" id="AL_AutorizoNombre" value=""></td>
               <td align="right" nowrap="nowrap">Cédula de Identidad de quién Retira:</td>
-              <td align="left" nowrap="nowrap"><input name="AL_AutorizoCedula" type="number" id="AL_AutorizoCedula"></td>
+              <td align="left" nowrap="nowrap"><input name="AL_AutorizoCedula" type="number" id="AL_AutorizoCedula" value=""></td>
             </tr>
             <tr valign="baseline">
               <td colspan="4" align="right" nowrap="nowrap">&nbsp;</td>

@@ -2,16 +2,18 @@
 	require_once("app/includes/constantes.php");
 	require_once("app/includes/conexion.class.php");
 	require_once('app/model/usuarioModel.php');
+	require_once('app/model/saimeModel.php');
 	
 	$objConexion= new conexion(SERVER,USER,PASS,DB);
 	$objUsuario = new Usuario();
+	$objSaime	= new Saime();
 
 	
 	$RSUsuario 	= $objUsuario->listar($objConexion);
 	$cantRS		= $objConexion->cantidadRegistros($RSUsuario);
 	
 	///// CONVIERTE FECHA 19800704 A 1980-07-04 (FORMATO MYSQL)
-/*
+
 	function setFecha($fecha)
 	{
 		$anio			= substr($fecha,0,4);		 
@@ -19,7 +21,65 @@
 		$dia			= substr($fecha,6);		 		
 		return $fecha = $anio.'-'.$mes.'-'.$dia;
 	}	
-	*/
+	
+	/////////// REFORMATEAR CORREO ELECTRONICO
+	function setCorreo($string) {
+		$string = trim($string);
+	
+		$string = str_replace(
+			array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+			array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+			$string
+		);
+	
+		$string = str_replace(
+			array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+			array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+			$string
+		);
+	
+		$string = str_replace(
+			array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+			array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+			$string
+		);
+	
+		$string = str_replace(
+			array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+			array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+			$string
+		);
+	
+		$string = str_replace(
+			array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+			array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+			$string
+		);
+	
+		$string = str_replace(
+			array('ñ', 'Ñ', 'ç', 'Ç'),
+			array('n', 'N', 'c', 'C',),
+			$string
+		);
+	
+		//Esta parte se encarga de eliminar cualquier caracter extraño
+		$string = str_replace(
+			array("\\", "¨", "º", "~",
+				 "#", "|", "!", "\"",
+				 "$", "%", "&", "/",
+				 "(", ")", "?", "'",
+				 "¿", "[", "^", "`", "]",
+				 "+", "}", "{", "¨", "´",
+				 ">", "< ", ";", ",", ":",
+				 " "),
+			'',
+			$string
+		);
+	
+	
+		return strtolower($string);
+	}	
+	
 	///// CONVIERTE FECHA 1980-07-04 A 04071980 (FORMATO MYSQL)
 	function setAF_Clave($AF_Clave)
 	{
@@ -56,7 +116,8 @@
     <td>FECHA NAC</td>
     <td>CLAVE</td>
     <td>CORREO</td>
-    <td>TELEFONO</td>    
+    <td>TELEFONO</td>  
+    <td>CORREOOOO 2</td>       
   </tr>
 <?php
 	for($i=0;$i<$cantRS;$i++){
@@ -70,6 +131,7 @@
 		$AF_Telefono	= $objConexion->obtenerElemento($RSUsuario,$i,"AF_Telefono");												
 
 ?>
+
   <tr>
     <td>&nbsp;<?php echo $NU_IdUsuario; ?></td>
     <td>&nbsp;<?php echo $NU_Cedula; ?></td>
@@ -79,20 +141,28 @@
     <td>&nbsp;<?php echo $AF_Clave; ?></td>
     <td>&nbsp;<?php echo $AF_Correo; ?></td>
     <td>&nbsp;<?php echo $AF_Telefono; ?></td>
-  </tr>
-<?php
-/*
-	$RSACT 		= $objUsuario->buscarUsuario2($objConexion,$NU_Cedula);
-	$cantRSACT	= $objConexion->cantidadRegistros($RSACT);
-	
-	if ($cantRSACT>0){
-		$NOMBRE		= $objConexion->obtenerElemento($RSACT,0,'NOMBRE');
-		$APELLIDO	= $objConexion->obtenerElemento($RSACT,0,'APELLIDO');	
-		
-		$objUsuario->actualizar($objConexion,$NU_Cedula,$NOMBRE,$APELLIDO);
+    <?php
+// PARA FORMATEAR CORREO ELECTRONICO
+	if ($AF_Correo != ''){
+		$AF_Correo = setCorreo($AF_Correo);
+		$objUsuario->actualizar2($objConexion,$NU_Cedula,$AF_Correo);
 	}
-	*/
-?>  
+/* PARA COLOCAR LA FECHA DE NACIMIENTO
+	if ($FE_FechaNac == ''){
+		$RSFecha 	= $objSaime->buscarPersona($objConexion,$NU_Cedula);
+		$cantRSFecha= $objConexion->cantidadRegistros($RSFecha);
+		
+		if ($cantRSFecha>0){
+			$fecha3 = setFecha($objConexion->obtenerElemento($RSFecha,0,"FechaNacimiento"));
+			
+			$objUsuario->actualizar2($objConexion,$NU_Cedula,$fecha3);
+		}
+	}
+/*	*/
+?>
+    <td>&nbsp;<?php echo $AF_Correo; ?></td>    
+  </tr>
+  
 <?php } ?>  
 </table>
 </body>

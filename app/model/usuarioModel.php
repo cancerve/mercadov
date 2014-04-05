@@ -103,6 +103,20 @@ class Usuario{
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
 	}
+
+	function buscarUsuario2($objConexion,$NU_IdUsuario){
+		$this->NU_IdUsuario = $NU_IdUsuario;
+		$NU_Cedula;
+		$query="SELECT U.*, E.AF_RazonSocial, S.AL_NombreSede, G.AL_NombreGerencia
+				FROM usuario AS U
+				LEFT JOIN empresa AS E ON (E.NU_IdEmpresa=U.empresa_NU_IdEmpresa)
+				LEFT JOIN sede AS S ON (S.NU_IdSede=U.sede_NU_IdSede)
+				LEFT JOIN gerencia AS G ON (G.NU_IdGerencia=U.gerencia_NU_IdGerencia)
+				WHERE NU_IdUsuario='".$this->NU_IdUsuario."'";
+		
+		$resultado=$objConexion->ejecutar($query);
+		return $resultado;		
+	}
 		
 	function existeUsuario($objConexion,$NU_Cedula){
 		$this->NU_Cedula = $NU_Cedula;
@@ -149,7 +163,12 @@ class Usuario{
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
 	}	
-
+	
+	function listar2($objConexion){
+		$query="SELECT * FROM usuario AS U WHERE U.FE_FechaNac IS NULL";
+		$resultado=$objConexion->ejecutar($query);
+		return $resultado;		
+	}
 /*
 	function buscarUsuario2($objConexion,$NU_Cedula){
 		$this->NU_Cedula = $NU_Cedula;
@@ -161,7 +180,20 @@ class Usuario{
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
 	}
-*/		
+*/
+
+	function actualizar2($objConexion,$NU_Cedula,$AF_Correo){
+		$this->NU_Cedula	= $NU_Cedula;
+		$this->AF_Correo		= $AF_Correo;
+		
+		$query="UPDATE usuario SET
+				AF_Correo='".$this->AF_Correo."'
+				WHERE NU_Cedula=".$this->NU_Cedula;
+		
+		$resultado=$objConexion->ejecutar($query);
+		return true;
+	}
+			
 	function actualizar($objConexion,$NU_Cedula,$AF_Clave,$AF_Correo,$AF_Telefono){
 		$this->NU_Cedula	= $NU_Cedula;
 		$this->AF_Clave		= $AF_Clave;

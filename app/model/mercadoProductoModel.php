@@ -27,16 +27,18 @@ class MercadoProducto{
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
 	}
-/*	
-	function buscar($objConexion,$NU_IdMercado){
+	
+	function cantProducXmerc($objConexion,$NU_IdMercado){
 		$this->NU_IdMercado=$NU_IdMercado;
-		$query="SELECT *
-				FROM mercado
-				WHERE NU_IdMercado=".$this->NU_IdMercado;
+		$query="SELECT PR.AF_NombreProducto
+				FROM mercado_producto AS MP
+                LEFT JOIN producto AS PR ON (PR.NU_IdProducto=MP.NU_IdProducto)
+				WHERE MP.NU_IdMercado=".$this->NU_IdMercado;
 		$resultado=$objConexion->ejecutar($query);
+		
 		return $resultado;		
 	}
-	
+/*	
 	function actualizar($objConexion,$AF_RIF,$ciudad_AF_CodCiudad,$pais_AL_CodPais,$AF_Clasificacion_Empresa,$AF_Razon_Social,$AF_Direccion,$AL_Web,$AF_Correo_Electronico,$AF_Telefono,$AF_Fax){
 		$this->AF_RIF					= $AF_RIF;
 		$this->ciudad_AF_CodCiudad		= $ciudad_AF_CodCiudad;				

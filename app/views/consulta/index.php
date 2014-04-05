@@ -59,10 +59,7 @@
             <td style="text-align: justify"> <a href="2/index.php">&nbsp;- Consolidado de Descuesto Mercado Obrero</a></td>
           </tr>
           <tr>
-            <td style="text-align: justify">&nbsp;- Inventario por Ubicación o Sede</td>
-          </tr>
-          <tr>
-            <td style="text-align: justify">&nbsp;- Inventario Total</td>
+            <td style="text-align: justify"><a href="3/index.php">&nbsp;- Inventario</a></td>
           </tr>
           <tr>
             <td style="text-align: justify">&nbsp;</td>

@@ -39,7 +39,6 @@
 		$RSVerificar 	= $objPedido->verificarPedido($objConexion,$usuario_NU_IdUsuario,$mercado_NU_IdMercado);
 		$cantVerificar 	= $objConexion->cantidadRegistros($RSVerificar);
 		///////////////////////////////////////////////////////////////
-//		$pedido_NU_IdPedido = $objPedido->obtenerUltimo($objConexion);
 		$pedido_NU_IdPedido = $objConexion->obtenerElemento($RSVerificar,0,'NU_IdPedido');
 
 		$cantDigPedido = 6-(strlen($pedido_NU_IdPedido));
@@ -49,7 +48,8 @@
 		}
 
 		$AF_CodPedido .= $pedido_NU_IdPedido;
-
+		$AF_CodPedido;
+		
 		$objPedido->crearCodigo($objConexion,$pedido_NU_IdPedido,$AF_CodPedido);
 
 		for($k=0;$k<=$_POST['cantProducto'];$k++){
@@ -62,8 +62,7 @@
 
 				if ($NU_Cantidad!=''){
 					//////////////// VERIFICAR SI YA EXISTE ESTE INSERT PARA EVITAR DUPLICAR PEDIDO DETALLES ///////////////////
-					$RSVerificar2 	= $objPedidoDetalle->verificarDetalle($objConexion,$pedido_NU_IdPedido,$producto_NU_IdProducto);
-					$cantVerificar2	= $objConexion->cantidadRegistros($RSVerificar2);
+					$cantVerificar2 	= $objPedidoDetalle->verificarDetalle($objConexion,$pedido_NU_IdPedido,$producto_NU_IdProducto);
 					///////////////////////////////////////////////////////////////
 					if ($cantVerificar2==0){
 						$objPedidoDetalle->insertar($objConexion,$producto_NU_IdProducto,$pedido_NU_IdPedido,$NU_Cantidad,$BS_PrecioUnitario,$NU_Max);

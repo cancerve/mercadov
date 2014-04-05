@@ -36,7 +36,12 @@ die();
 	if(isset($NU_Cedula)==false)
 	{
 		$mensaje="Acceso Denegado.";
-		header("Location: ../../index.php?mensaje=$mensaje");			
+		//header("Location: ../../index.php?mensaje=$mensaje");
+		
+	echo '<script type="text/javascript">';
+	echo 'top.location.href="../../../index.php?mensaje=Acceso Denegado.";';
+	echo '</script>';
+	
 	}else{
 		$resUsuario	= $objUsuario->buscarUsuario($objConexion,$NU_Cedula);
 		$cant 		= $objConexion->cantidadRegistros($resUsuario);
@@ -52,7 +57,12 @@ die();
 						
 		}else{
 			$mensaje="Acceso Denegado.";
-			header("Location: ../../index.php?mensaje=$mensaje");			
+			//header("Location: ../../index.php?mensaje=$mensaje");	
+			
+			echo '<script type="text/javascript">';
+			echo 'top.location.href="../../../index.php?mensaje=Acceso Denegado.";';
+			echo '</script>';	
+				
 		}
 	}
 ?>

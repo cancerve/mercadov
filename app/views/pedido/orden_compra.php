@@ -34,7 +34,7 @@
 		$_SESSION['FE_FechaPedido'] 	= $objConexion->obtenerElemento($RSPedido,0,"FE_FechaPedido");	
 		$_SESSION['AL_AutorizoCedula'] 	= $objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoCedula");			
 		if ($_SESSION['AL_AutorizoCedula']!=''){
-			$_SESSION['AL_AutorizoCedula'] 	= number_format($objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoCedula"),0,'','.');			
+			$_SESSION['AL_AutorizoCedula'] 	= $objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoCedula",0,'','.');			
 		}
 		$_SESSION['AL_AutorizoNombre'] 	= $objConexion->obtenerElemento($RSPedido,0,"AL_AutorizoNombre");	
 	}
@@ -132,32 +132,35 @@ $pdf->SetFont('Arial','',10);
 $color=0;
 $total_productos 	= 0;
 $total_pedido 		= 0;
-
+$nro				= 0;
 for($i=0;$i<$cantPedidoDetalle;$i++){
 	$AF_NombreProducto 	= $objConexion->obtenerElemento($RSPedidoDetalle,$i,"AF_NombreProducto");
 	$NU_Contenido 		= $objConexion->obtenerElemento($RSPedidoDetalle,$i,"NU_Contenido");
 	$AL_Medida 			= $objConexion->obtenerElemento($RSPedidoDetalle,$i,"AL_Medida");
 	$NU_Cantidad 		= $objConexion->obtenerElemento($RSPedidoDetalle,$i,"NU_Cantidad");
 	$BS_PrecioUnitario 	= $objConexion->obtenerElemento($RSPedidoDetalle,$i,"BS_PrecioUnitario");
-	$BS_PrecioTotal		= $NU_Cantidad * $BS_PrecioUnitario;
-	
-	$pdf->SetFillColor(232,232,232);		
-	$pdf->Cell(12,7,$i+1,1,0,'C',1);
-	if($color==1){
-		$pdf->SetFillColor(248,248,248);			
-		$color=0;
-	}else{
-		$pdf->SetFillColor(255,255,255);					
-		$color=1;	
+
+	if ($NU_Cantidad!=0){
+		$BS_PrecioTotal		= $NU_Cantidad * $BS_PrecioUnitario;
+		$nro++;
+		$pdf->SetFillColor(232,232,232);		
+		$pdf->Cell(12,7,$nro,1,0,'C',1);
+		if($color==1){
+			$pdf->SetFillColor(248,248,248);			
+			$color=0;
+		}else{
+			$pdf->SetFillColor(255,255,255);					
+			$color=1;	
+		}
+		$pdf->Cell(83,7,ucwords(strtolower(utf8_decode($AF_NombreProducto.' ('.setDecimalEsp($NU_Contenido).' '.$AL_Medida.')'))),1,0,'L',1);
+		$pdf->Cell(25,7,$NU_Cantidad,1,0,'C',1);
+		$pdf->Cell(35,7,number_format($BS_PrecioUnitario,2,',','.').' BsF.',1,0,'R',1);	
+		$pdf->Cell(35,7,number_format($BS_PrecioTotal,2,',','.').' BsF.',1,0,'R',1);
+		$pdf->Ln(7);
+		
+		$total_productos 	= $total_productos + $NU_Cantidad;
+		$total_pedido 		= $total_pedido + $BS_PrecioTotal;
 	}
-	$pdf->Cell(83,7,ucwords(strtolower(utf8_decode($AF_NombreProducto.' ('.setDecimalEsp($NU_Contenido).' '.$AL_Medida.')'))),1,0,'L',1);
-	$pdf->Cell(25,7,$NU_Cantidad,1,0,'C',1);
-	$pdf->Cell(35,7,number_format($BS_PrecioUnitario,2,',','.').' BsF.',1,0,'R',1);	
-	$pdf->Cell(35,7,number_format($BS_PrecioTotal,2,',','.').' BsF.',1,0,'R',1);
-	$pdf->Ln(7);
-	
-	$total_productos 	= $total_productos + $NU_Cantidad;
-	$total_pedido 		= $total_pedido + $BS_PrecioTotal;
 }
 $pdf->SetFont('Arial','B',12);
 $pdf->SetFillColor(232,232,232);		

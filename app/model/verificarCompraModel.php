@@ -44,18 +44,6 @@ class VerificarCompra{
 		return $resultado;		
 	}
 	
-	function verificarPedido($objConexion,$usuario_NU_IdUsuario,$mercado_NU_IdMercado){
-		$this->usuario_NU_IdUsuario = $usuario_NU_IdUsuario;
-		$this->mercado_NU_IdMercado = $mercado_NU_IdMercado;		
-		$query="SELECT *
-				FROM pedido AS P
-				WHERE P.usuario_NU_IdUsuario=".$this->usuario_NU_IdUsuario." and mercado_NU_IdMercado=".$this->mercado_NU_IdMercado;
-		$resultado=$objConexion->ejecutar($query);
-		$cantidad = $objConexion->cantidadRegistros($resultado);
-
-		return $cantidad;
-	}
-	
 	function crearCodigo($objConexion,$NU_IdPedido,$AF_CodPedido){
 		$this->NU_IdPedido	= $NU_IdPedido;
 		$this->AF_CodPedido	= $AF_CodPedido;

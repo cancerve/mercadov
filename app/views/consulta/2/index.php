@@ -1,13 +1,8 @@
 <?php 
 require_once('../../../controller/sessionController.php'); 
 require_once('../../../model/mercadoModel.php');
-require_once('../../../model/descuentoNModel.php');
 
 $objMercado 	= new Mercado();
-$objDescuentoN 	= new DescuentoN();
-
-$RS 		= $objDescuentoN->listarDescuentoN2($objConexion);
-$cantRS 	= $objConexion->cantidadRegistros($RS);
 
 
 	///// CONVIERTE FECHA 04/07/1980 A 1980-07-04 (FORMATO MYSQL)
@@ -66,13 +61,16 @@ $cantRS 	= $objConexion->cantidadRegistros($RS);
       <td height="25" align="center">&nbsp;</td>
     </tr>
     <tr>
-      <td height="25" align="center"><form name="form1" method="post" action="../../../controller/descuentoNController.php">
-        <table width="430" border="0" cellspacing="2" cellpadding="2" class="Textonegro">
+      <td height="25" align="center"><form name="form1" method="post" action="../../../controller/descuentoNController.php" target="_blank">
+        <table width="430" border="0" cellspacing="2" cellpadding="2" class="TablaRojaGrid">
           <tr>
-            <td colspan="2" align="left">Escoja el Mercado al cual desea crearle el Consolidado de Descuento:
-              <input name="origen" type="hidden" id="origen" value="descuento_nomina"></td>
+            <td colspan="2" align="left" class="TablaRojaGridTRTitulo">Llene el siguiente formulario para generar la Consulta</td>
           </tr>
           <tr>
+            <td colspan="2" align="left">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right">Nro. Mercado:</td>
             <td align="left"><select name="mercado_NU_IdMercado" required id="mercado_NU_IdMercado">
               <option selected="selected">[ Seleccione ]</option>
               <?php 
@@ -88,7 +86,24 @@ $cantRS 	= $objConexion->cantidadRegistros($RS);
 					}  
 				?>
             </select></td>
-            <td align="center"><input type="submit" name="button" id="button" value="[ Crear ]" class="BotonRojo"></td>
+          </tr>
+          <tr class="TablaRojaGrid">
+            <td align="right">Formato del Archivo:</td>
+            <td align="left"><select name="formato" id="formato">
+              <option selected>[ Seleccione ]</option>
+              <option value="pdf">PDF</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="left">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="left"><input name="origen" type="hidden" id="origen" value="descuento_nomina"></td>
+            <td align="left"><input type="submit" name="button" id="button" value="[ Ver ]" class="BotonRojo">
+            <input name="button2" type="button" class="BotonRojo" id="button2" value="[ Atrás ]" onClick="javascript:window.location='../index.php'" /></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="left">&nbsp;</td>
           </tr>
         </table>
       </form></td>
@@ -96,68 +111,8 @@ $cantRS 	= $objConexion->cantidadRegistros($RS);
     <tr>
       <td height="25">&nbsp;</td>
     </tr>
-    <?php 
-	//$NU_IdSolicitudInventario 	= $objConexion->obtenerElemento($RS,0,'NU_IdSolicitudInventario');
-	if ($cantRS>0){ ?>
     <tr>
-      <td height="25">
-      <table width="772" class="TablaRojaGrid" align="center">
-      <thead>
-        <tr class="TablaRojaGridTRTitulo">
-          <th width="100" align="center" scope="col">NRO. CONSOLIDADO DE DESCUENTO</th>
-          <th width="100" align="center" scope="col">NRO. <br>
-            MERCADO</th>
-          <th width="100" align="center" scope="col">FECHA DEL<br>
-            MERCADO</th>
-          <th width="100" align="center" scope="col">TOTAL<br>
-            MONTO BRUTO</th>
-          <th width="100" align="center" scope="col">TOTAL
-            NOTAS DE CRÉDITO</th>
-          <th width="100" align="center" scope="col">TOTAL A<br>
-            DESCONTAR</th>
-          <th width="60" align="center" scope="col">VER</th>
-          <th width="60" align="center" scope="col">BORRAR</th>
-        </tr>
-	  </thead>
-      <tbody>
-	<?php
-    	for($i=0; $i<$cantRS; $i++){
-			$NU_IdDescuento 		= $objConexion->obtenerElemento($RS,$i,'NU_IdDescuento');
-			$mercado_NU_IdMercado	= $objConexion->obtenerElemento($RS,$i,'mercado_NU_IdMercado');			
-			$FE_FechaMercado		= $objConexion->obtenerElemento($RS,$i,'FE_FechaMercado');			
-			$MontoBruto 			= $objConexion->obtenerElemento($RS,$i,'MontoBruto');
-			$NotaCredito 			= $objConexion->obtenerElemento($RS,$i,'NotaCredito');
-			$totalDescontar			= $MontoBruto - $NotaCredito;
-					
-    ?>
-        <tr>
-          <td align="center" class="TablaRojaGridTD"><?php echo '0'.$NU_IdDescuento; ?></td>
-          <td align="center" class="TablaRojaGridTD"><?php echo 'DGRH-GBS-M0'.$mercado_NU_IdMercado; ?></td>
-          <td align="center" class="TablaRojaGridTD"><?php echo setFechaNoSQL($FE_FechaMercado); ?></td>
-          <td align="center" class="TablaRojaGridTD"><?php echo number_format($MontoBruto,2,',','.').' Bsf.'; ?></td>
-          <td align="right" class="TablaRojaGridTD"><?php echo number_format($NotaCredito,2,',','.').' Bsf.'; ?></td>
-          <td align="right" class="TablaRojaGridTD"><?php echo number_format($totalDescontar,2,',','.').' Bsf.'; ?></td>
-          <td align="center" class="TablaRojaGridTD"><a href="documento.php?NU_IdDescuento=<?=$NU_IdDescuento?>" target="_blank"><img src="../../../images/bton_ver.gif" width="31" height="31"></a></td>
-          <td align="center" class="TablaRojaGridTD">
-            <a href="index.php?mensaje='En Construccion'">
-              <img src="../../../images/bton_del.gif" width="35" height="31"></a>
-          </td>
-        </tr>
-	<?php
-	    }
-    ?>          
-        </tbody>
-      </table>
-	<?php
-	    }
-    ?>       
-      </td>
-    </tr>
-    <tr>
-      <td height="25">&nbsp;</td>
-    </tr>
-    <tr>
-      <td height="25" align="center"><input name="button2" type="button" class="BotonRojo" id="button2" value="[ Atrás ]" onClick="javascript:window.location='../index.php'" /></td>
+      <td height="25" align="center">&nbsp;</td>
     </tr>
   </table>
 </body>

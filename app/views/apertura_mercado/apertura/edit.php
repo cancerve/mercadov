@@ -39,8 +39,9 @@
 		$NU_IdMercado 			= $objConexion->obtenerElemento($verificarActivo,0,"NU_IdMercado");
 
 		$RSPedido 		= $objPedido->verificarPedido($objConexion,$usuario_NU_IdUsuario,$NU_IdMercado);
-
-		if ($RSPedido>0){
+		$cantRSPedido 	= $objConexion->cantidadRegistros($RSPedido);
+		
+		if ($cantRSPedido>0){
 			$mensaje='ALERTA: Usted ya posee una orden de compra activa para el Mercado Virtual disponible.';
 			header("Location: ../centralView.php?mensaje=$mensaje");		
 		}

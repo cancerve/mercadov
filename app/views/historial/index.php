@@ -120,11 +120,11 @@ $cantRS = $objConexion->cantidadRegistros($RS);
     ?>          
         </tbody>
       </table>
-	<?php
-	    }else{ echo 'No se encontraron registros.'; }
-    ?>       
       </td>
     </tr>
+    	<?php
+	    }else{ echo '<tr align="center"><td>No se encontraron registros.</td></tr>'; }
+    ?>
   </table>
 </body>
 </html>
