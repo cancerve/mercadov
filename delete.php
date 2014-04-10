@@ -39,7 +39,7 @@
 <?php
 	$cantVerificar2 	= $objPedidoDetalle->verificarDetalle($objConexion,$pedido_NU_IdPedido,$producto_NU_IdProducto);
 	if ($cantVerificar2>1){
-		$objPedidoDetalle->delete($objConexion,$NU_IdPedidoDetalle);
+		//$objPedidoDetalle->delete($objConexion,$NU_IdPedidoDetalle);
 	}
 
 ?>  

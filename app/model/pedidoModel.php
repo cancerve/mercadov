@@ -109,15 +109,15 @@ class Pedido{
 		
 	function listarPedidoIndiv($objConexion,$NU_IdUsuario){		
 		$this->NU_IdUsuario = $NU_IdUsuario;
-		$query="SELECT P.*, M.FE_FechaMercado,M.FE_Fin,U.NU_Cedula, U.AL_Nombre, U.AL_Apellido, SUM(NU_Cantidad) AS CantProductos, SUM(NU_Cantidad*BS_PrecioUnitario) AS MontoBruto, V.BI_Aprobado
+		$query="SELECT P.*, M.FE_FechaMercado,M.FE_Fin,U.NU_Cedula, U.AL_Nombre, U.AL_Apellido, SUM(NU_Cantidad) AS CantProductos, SUM(NU_Cantidad*BS_PrecioUnitario) AS MontoBruto
 				FROM pedido AS P
                 LEFT JOIN mercado AS M ON (M.NU_IdMercado=P.mercado_NU_IdMercado)
 				LEFT JOIN usuario AS U ON (U.NU_IdUsuario=P.usuario_NU_IdUsuario)
 				LEFT JOIN pedido_detalle AS PD ON (PD.pedido_NU_IdPedido=P.NU_IdPedido)
-				LEFT JOIN verificacion_compra AS V ON (V.pedido_NU_IdPedido=P.NU_IdPedido)
 				WHERE usuario_NU_IdUsuario=".$this->NU_IdUsuario."
                 GROUP BY P.NU_IdPedido
 				ORDER BY P.NU_IdPedido DESC";
+				
 		$resultado=$objConexion->ejecutar($query);
 		return $resultado;		
 	}	

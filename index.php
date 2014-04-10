@@ -76,7 +76,7 @@ body {
           <td>
             <table width="966" border="0" align="center" cellpadding="8" cellspacing="8">
               <tr>
-                <th width="914" valign="top" scope="col">
+                <th width="588" valign="top" scope="col">
                 <table width="100%" class="TablaRojaGrid">
                   <tr class="TablaRojaGridTRTitulo">
                     <th scope="col">MERCADO VIRTUAL</th>
@@ -105,15 +105,15 @@ body {
                     <td class="Textonegro" align="justify" height="5px">&nbsp;</td>
                   </tr>                  
                   <tr>
-                    <td align="center" bgcolor="#CCCCCC" class="TextonegroPEQ" style="margin-left:12; margin-right:12"><span class="TextonegroPEQ" style="margin-left:12; margin-right:12">En caso de cualquier duda escribanos a la siguente direccion de correo: <a href="mailto:soporte.mercadov@venalcasa.net.ve">soporte.mercadov@venalcasa.net.ve.</a></span></td>
+                    <td align="center" bgcolor="#CCCCCC" class="TextonegroPEQ" style="margin-left:12; margin-right:12"><span class="TextonegroPEQ" style="margin-left:12; margin-right:12">En caso de cualquier duda escribanos a la siguente direccion de correo: <a href="mailto:mercadovirtual@venalcasa.net.ve">mercadovirtual@venalcasa.net.ve</a></span></td>
                   </tr>
                 </table>
                 </th>
-                <th width="293" scope="col" valign="top">
+                <th width="322" scope="col" valign="top">
                   <form name="form1" id="form1" method="POST" action="app/controller/autenticarController.php">
                     <fieldset>
                       <legend class="NegritaMayor" align="left"> Iniciar Sesi&oacute;n</legend>
-                      <table width="300" border="1" align="right" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" bgcolor="#FFFFFF" class="TablaRojaGrid">
+                      <table width="100%" border="1" align="right" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" bgcolor="#FFFFFF" class="TablaRojaGrid">
                                               
                         <tr>
                           <td align="center" style="border-color:#FFF; border:none"><table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="Negrita">
@@ -128,7 +128,7 @@ body {
                               <td align="center">&nbsp;</td>
                             </tr>
                             <tr>
-                              <td colspan="2" align="center"><input id="button3" name="button3" type="button" class="BotonRojo" value="[ Registrese ]"  onClick="javascript:window.location='app/views/usuario/crear/index.php'"></td>
+                              <td colspan="2" align="center"><input id="button3" name="button3" type="button" class="BotonRojo" value="Registrese"  onClick="javascript:window.location='app/views/usuario/crear/index.php'"></td>
                             </tr>
                             <tr>
                               <td colspan="2" align="center">&nbsp;</td>
@@ -139,7 +139,7 @@ body {
                           <td bgcolor="#CF0F1B" style="border-color:#FFF; border:none"><img src="app/images/blank.gif" width="20" height="1"  alt=""/></td>
                         </tr>
                         <tr>
-                          <td style="border-color:#FFF; border:none"><table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="Negrita">
+                          <td style="border-color:#FFF; border:none"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="Negrita">
                             <tr>
                               <td colspan="2" align="center">&nbsp;</td>
                             </tr>
@@ -150,8 +150,8 @@ body {
                               <td colspan="2">&nbsp;</td>
                             </tr>
                             <tr>
-                              <td><img src="app/images/blank.gif" width="17" height="5"  alt=""/></td>
-                              <td>N&uacute;mero de C&eacute;dula: <br>
+                              <td width="15%"><img src="app/images/blank.gif" width="17" height="5"  alt=""/></td>
+                              <td width="85%">N&uacute;mero de C&eacute;dula: <br>
                                 <input name="NU_Cedula" type="text" required id="NU_Cedula" style="height:25px; width:200px; font-size:20" size="20"></td>
                             </tr>
                             <tr>
@@ -186,7 +186,7 @@ body {
                               <td align="center" bordercolor="#F8F8F8">&nbsp;</td>
                             </tr>
                             <tr>
-                              <td colspan="2" align="center" bordercolor="#F8F8F8"><input id="submit" name="submit" type="submit" class="BotonRojo" value="[ Entrar ]"></td>
+                              <td colspan="2" align="center" bordercolor="#F8F8F8"><input id="submit" name="submit" type="submit" class="BotonRojo" value="Entrar"></td>
                             </tr>
                             <tr>
                               <td colspan="2" align="center" bordercolor="#F8F8F8">&nbsp;</td>
@@ -197,22 +197,25 @@ body {
                           <td bgcolor="#CF0F1B" style="border-color:#FFF; border:none"><img src="app/images/blank.gif" width="20" height="1"  alt=""/></td>
                         </tr>
                         <tr>
-                          <td style="border-color:#FFF; border:none"><table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="Negrita">
+                          <td style="border-color:#FFF; border:none"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="Negrita">
                             <tr>
-                              <td colspan="2" align="center">&nbsp;</td>
+                              <td colspan="3" align="center">&nbsp;</td>
                             </tr>
                             <tr>
-                              <td colspan="2" align="center">Si ha olvidado su clave, haga clic en el siguiente bot&oacute;n para enviar a su correo una nueva.</td>
+                              <td width="50%" align="center">Si ha olvidado su clave, haga clic en el siguiente bot&oacute;n.</td>
+                              <td rowspan="3" align="center" bgcolor="#CF0F1B"><img src="app/images/blank.gif" width="1" height="10"  alt=""/></td>
+                              <td width="50%" align="center">Para cualquier sugerencia, duda o problema.</td>
                             </tr>
                             <tr>
                               <td>&nbsp;</td>
                               <td align="center">&nbsp;</td>
+                              </tr>
+                            <tr>
+                              <td align="center"><input id="button2" name="button2" type="button" class="BotonRojo" value="Recuperar"  onClick="javascript:window.location='app/views/usuario/recuperacion/index.php'"></td>
+                              <td align="center"><input id="button" name="button" type="button" class="BotonRojo" value="Atender Solicitud"  onClick="javascript:window.location='app/views/usuario/novedad/index.php'"></td>
                             </tr>
                             <tr>
-                              <td colspan="2" align="center"><input id="button2" name="button2" type="button" class="BotonRojo" value="[ Recuperar ]"  onClick="javascript:window.location='app/views/usuario/recuperacion/index.php'"></td>
-                            </tr>
-                            <tr>
-                              <td colspan="2" align="center">&nbsp;</td>
+                              <td colspan="3" align="center">&nbsp;</td>
                             </tr>
                           </table></td>
                         </tr>

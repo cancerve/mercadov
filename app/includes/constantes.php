@@ -7,10 +7,10 @@
 	define("DB","venalcas_mercadov");	
 /**/
 //// SERVICIOS HOSTING //////////
-
-/*	define("SERVER","localhost");
-	define("USER","venalcas");
-	define("PASS","yXu2mVP1");
+/*
+	define("SERVER","localhost");
+	define("USER","venalcas_mercado");
+	define("PASS","temporal1");
 	define("DB","venalcas_mercadov");	
 /**/	
 ?>
