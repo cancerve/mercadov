@@ -1,15 +1,11 @@
 <?php
-/*		echo $NU_Cedula 	= $_POST["NU_Cedula"];
-		echo $AF_Clave 	= $_POST["AF_Clave"];
-		echo $code 		= $_POST['code'];
-		echo 'amasdf';*/
-?>
-<?php
+
+	
 	require_once("../includes/conexion.class.php");
 	require_once("../includes/constantes.php");	
 	require_once("../includes/captcha/securimage.php");	
 	require_once("../model/usuarioModel.php");
-	require_once("../model/saimeModel.php");	
+	//require_once("../model/saimeModel.php");	
 ?>
 <?php
 if(isset($_POST["submit"])){
@@ -21,7 +17,7 @@ if(isset($_POST["submit"])){
 
 		$objConexion	= new conexion(SERVER,USER,PASS,DB);
 		$objUsuario		= new Usuario();
-		$objSaime		= new Saime();
+		//$objSaime		= new Saime();
 		$objImgCode 	= new Securimage();
 
 		$existe		= $objUsuario->existeUsuario($objConexion,$NU_Cedula);
@@ -33,6 +29,7 @@ if(isset($_POST["submit"])){
 
 			if (($encontrado) and ($valid))
 			{
+				
 				$RS 			= $objUsuario->buscarUsuario($objConexion,$NU_Cedula);
 				$NU_IdUsuario 	= $objConexion->obtenerElemento($RS,0,"NU_IdUsuario");
 				$AL_Nombre 		= $objConexion->obtenerElemento($RS,0,"AL_Nombre");
@@ -41,7 +38,7 @@ if(isset($_POST["submit"])){
 				$AF_Telefono 	= $objConexion->obtenerElemento($RS,0,"AF_Telefono"); 
 				$BI_Admin 		= $objConexion->obtenerElemento($RS,0,"BI_Admin"); 
 	
-				session_start();
+				session_start();				
 				$_SESSION["NU_IdUsuario"] 		= $NU_IdUsuario;
 				$_SESSION["NU_Cedula"] 			= $NU_Cedula;
 				$_SESSION["AL_NombreApellido"] 	= $AL_Nombre.' '.$AL_Apellido;

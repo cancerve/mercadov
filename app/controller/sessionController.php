@@ -15,10 +15,10 @@ die();
 	//$ruta = '.:/php/PEAR.:/var/www/VENALCASA/app/includes.:/var/www/VENALCASA/app/model.:';
 	
 	//SERVICIOSHOSTING
-	//$ruta = ':/home/venalcas/public_html/mercadov/app/includes:/home/venalcas/public_html/mercadov/app/model:';	
+	$ruta = ':/home/venalcas/public_html/mercadov/app/includes:/home/venalcas/public_html/mercadov/app/model:';	
 
 	//EN WINDOWS
-	$ruta = '.;D:\xampp\php\PEAR.;D:\xampp\htdocs\VENALCASA\mercadov\app\includes;D:\xampp\htdocs\VENALCASA\mercadov\app\model;';
+	//$ruta = '.;D:\xampp\php\PEAR.;D:\xampp\htdocs\VENALCASA\mercadov\app\includes;D:\xampp\htdocs\VENALCASA\mercadov\app\model;';
 
 	set_include_path(get_include_path() . PATH_SEPARATOR . $ruta);
 

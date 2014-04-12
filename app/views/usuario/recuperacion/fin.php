@@ -83,7 +83,7 @@
                 <td><p>Hemos enviado un mensaje con su nueva clave de acceso a su correo: <strong><?php echo $_GET['AF_Correo']?></strong></p>
                   <p>Ya puede realizar el ingreso y actualización de datos en el sistema.</p>
                   <p>En caso de no recibir el mensaje enviado por el <strong>Sistema de Mercado Virtual de VENALCASA </strong>en su bandeja de entrada del correo que nos suministr&oacute;, se le recomienda revisar la carpeta de<strong> Correos no Deseados (Spam)</strong>.</p>
-                  <p>En última instancia se puede comunicar con nosotros al correo: <a href="mailto:mercadovirtual@venalcasa.net.ve">mercadovirtual@venalcasa.net.ve</a><a href="mailto:soporte.mercadov@venalcasa.net.ve"></a> indicando su problema.</p></td>
+                  <p>En última instancia se puede comunicar con nosotros al correo: <a href="mailto:mercadovirtual@venalcasa.net.ve">mercadovirtual@venalcasa.net.ve</a><a href="mailto:mercadovirtual@venalcasa.net.ve"></a> indicando su problema.</p></td>
               </tr>
               <tr>
                 <td style="text-align: justify">&nbsp;</td>
@@ -109,7 +109,7 @@
                 </tr>
                 <tr>
                   <td><p>Los datos suministrados por usted NO estan registrados en nuestra Base de Datos. Verifique haber introducido los datos correctamente y vuelva a intentarlo.</p>
-                    <p>En última instancia se puede comunicar con nosotros al correo: <a href="mailto:mercadovirtual@venalcasa.net.ve">mercadovirtual@venalcasa.net.ve</a><a href="mailto:soporte.mercadov@venalcasa.net.ve"></a> indicando su problema.</p></td>
+                    <p>En última instancia se puede comunicar con nosotros al correo: <a href="mailto:mercadovirtual@venalcasa.net.ve">mercadovirtual@venalcasa.net.ve</a><a href="mailto:mercadovirtual@venalcasa.net.ve"></a> indicando su problema.</p></td>
                 </tr>
                 <tr>
                   <td style="text-align: justify">&nbsp;</td>

@@ -10,7 +10,6 @@
 <head>
 <title>MERCADO VIRTUAL DE VENALCASA</title>
 <link rel="stylesheet" href="../../../css/jquery-ui.css" />
-<link rel="stylesheet" href="../../../css/jquery.treeview.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/estilo.css">
 <script type="text/javascript" src="../../../js/jquery.js"></script>
 <script type="text/javascript" src="../../../js/jquery-ui.js"></script>

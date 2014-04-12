@@ -31,7 +31,15 @@ $(function() {
 	});
 });
 
-
+$(function() {
+	$( "#fecha_egreso" ).datepicker({
+		showAnim: 'slide',
+		dateformat: 'dd-mm-yy',
+		changeMonth: true,
+		changeYear: true,
+		yearRange: '-100:+0'
+	});
+});
 
 $(function() {
 	$( "#FE_Inicio" ).datepicker({

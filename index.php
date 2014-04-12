@@ -36,7 +36,7 @@ body {
 <body onLoad="abrir_dialog();">
 <div id="dialog" title="Mensaje" style="display:none;">
     <span class="ui-icon ui-icon-circle-check"></span>
-    <p><?php echo $_GET['mensaje']; ?></p>
+    <p><?php if (isset($_GET['mensaje'])){ echo $_GET['mensaje']; } ?></p>
 </div>
 <table width="100%" height="500" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
